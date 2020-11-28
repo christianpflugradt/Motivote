@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  padding: 10px;
+  background-color: #A3E0E6;
+  font-family: 'Advent Pro', serif !important;
+}
+
+.separator {
+  min-height: 25px;
+  width: 100%;
+  background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIj48ZGVmcz48cGF0dGVybiBpZD0icGF0dGVybiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiB2aWV3Qm94PSIwIDAgNDAsNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkgIj48cmVjdCBpZD0icGF0dGVybi1iYWNrZ3JvdW5kIiB3aWR0aD0iNDAwJSIgaGVpZ2h0PSI0MDAlIiBmaWxsPSJyZ2JhKDE2MywgMjI0LCAyMzAsMSkiPjwvcmVjdD4gPGNpcmNsZSBmaWxsPSJyZ2JhKDksIDE0NSwgMTU0LDEpIiBjeD0iMjAiIGN5PSIyMCIgcj0iMTEiPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0icmdiYSgzLCAxODUsIDE0MywxKSIgY3g9IjIwIiBjeT0iMjAiIHI9IjUiPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0icmdiYSgzLCAxODUsIDE0MywxKSIgY3g9Ii0yMCIgY3k9IjIwIiByPSI1Ij48L2NpcmNsZT48L3BhdHRlcm4+ICA8L2RlZnM+IDxyZWN0IGZpbGw9InVybCgjcGF0dGVybikiIGhlaWdodD0iMTAwJSIgd2lkdGg9IjEwMCUiPjwvcmVjdD48L3N2Zz4=")
+}
+
+.content {
+  padding-top: 10px;
+  min-height: 85vh;
+  width: 65%;
+  margin: auto;
+  font-size: 25px;
+}
+
+.nocontent {
+  min-height: 85vh;
+}
+
+.nocontent div {
+  padding-top: 15%;
+  text-align: center;
+  font-size: 45px;
+  width: 100%;
+}
+
+.countdown {
+  display: inline-block;
+  width: 50%;
+  font-size: 18px;
+  text-align: right;
+}
+
+.mat-dialog-container {
+  background-color: #8FF2E0;
+}
+
+.header {
+  margin-bottom: 10px !important;
+  padding: 5px 10px;
+  overflow: hidden;
+}
+
+.header a {
+  padding: 10px;
+  border-radius: 4px;
+  color: black;
+  text-decoration: none;
+}
+
+.header a:hover {
+  background-color: #03B98F;
+  color: black;
+}
+
+.header-left {
+  float: left;
+  text-align: center;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.header-center {
+  padding-left: 20%;
+}
+
+.header-right {
+  float: right;
+  font-size: 25px;
+}
+
+.footer {
+  padding: 20px 10px;
+  color: white;
+  text-align: center;
+  background: linear-gradient(70deg, #03B98F, #0BB1BC);
+}
+
+@media screen and (max-width: 800px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .subtitle {
+    visibility: hidden;
+  }
+}

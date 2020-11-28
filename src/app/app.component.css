@@ -1,0 +1,45 @@
+.pollheadline {
+  padding: 10px;
+  border: #03B98F dotted;
+  border-radius: 15px;
+}
+
+.welcome {
+  display: inline-block;
+  text-align: left;
+  padding: 10px;
+  font-size: 20px;
+  width: 45%;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 40px;
+  text-align: center;
+  padding: 10px;
+}
+
+.description {
+  font-style: italic;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.optiontext {
+  padding-top: 40px;
+  cursor: pointer;
+}
+
+.optionauthor {
+  padding-top: 5px;
+  font-size: 15px;
+  padding-bottom: 10px;
+}
+
+.mat-icon {
+  cursor: pointer;
+}
+
+.addoption {
+  padding-top: 20px;
+}
