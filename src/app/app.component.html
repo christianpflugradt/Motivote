@@ -1,0 +1,41 @@
+<div>
+  <div class="header">
+    <a href="#default" class="header-left">Motivote 0.1.0</a><br><span class="subtitle">a web client for Pollywog</span>
+    <span class="header-center">hier kommt ein tolles Logo hin</span>
+    <a href="#backend" class="header-right">using Pollywog 0.0.0</a>
+  </div>
+  <!--<div class="separator">.</div>-->
+
+  <div *ngIf="!username" class="nocontent">
+    <div>get invited to participate in a poll</div>
+  </div>
+
+  <div *ngIf="username" class="content">
+    <div class="pollheadline">
+      <div class="welcome">Welcome, {{username}}!</div>
+      <app-countdown [deadline]="deadline"></app-countdown>
+      <div class="title">{{title}}</div>
+      <div class="description">{{description}}</div>
+    </div>
+    <div *ngFor="let option of options">
+      <div class="optiontext" (click)="clickOption(option)">
+        <span>{{option.text}}</span>
+        <mat-icon matBadgePosition="above after" matBadge="{{option.likes}}" matBadgeOverlap="false">
+          {{optionIcon(option)}}
+        </mat-icon>
+      </div>
+      <div class="optionauthor">
+        <span class="optionauthor">by {{option.author}}</span>
+        <mat-icon *ngIf="option.owned" (click)="clickDelete(option)">delete_forever</mat-icon>
+      </div>
+      <mat-progress-bar mode="determinate" value="{{progress(option)}}"></mat-progress-bar>
+    </div>
+    <mat-form-field class="addoption">
+      <mat-label>add option</mat-label>
+      <input matInput placeholder="your option" (keyup.enter)="submitOption()" [(ngModel)]="addOptionValue">
+    </mat-form-field>
+    <mat-icon *ngIf="addOptionValue !== ''" (click)="submitOption()">send</mat-icon>
+  </div>
+
+  <div class="footer">Copyright © 2020 Christian Pflugradt</div>
+</div>
