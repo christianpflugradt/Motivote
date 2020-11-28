@@ -1,12 +1,26 @@
+image: node:13
+
 stages:
+  - build
   - release
 
 variables:
   DOCKER_DRIVER: overlay2
 
+build:
+  stage: build
+  before_script:
+    - npm install
+    - npm install --save @angular/material @angular/cdk
+  script: npm run build
+  artifacts:
+    when: always
+    paths:
+      - dist/main/*
+    expire_in: 1 week
+
 semver:
   stage: release
-  image: node:13
   before_script:
     - npm install @semantic-release/gitlab
     - cat $SEM_RELEASE_OPTIONS > .releaserc.yml
