@@ -11,6 +11,7 @@ build_snapshot:
   stage: build
   before_script:
     - npm install
+    - echo "export const VERSION = '`git describe --tags`'" > src/environments/version.ts
   script: npm run build
   artifacts:
     when: always
@@ -24,6 +25,7 @@ publish_release:
   stage: release
   before_script:
     - npm install
+    - echo "export const VERSION = '`git describe --tags`'" > src/environments/version.ts
   script: npm run buildprod
   artifacts:
     when: always

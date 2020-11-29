@@ -8,8 +8,7 @@
     "buildprod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "node setversion.js"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -33,10 +32,7 @@
     "@angular/compiler-cli": "~11.0.1",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
-    "chalk": "^4.1.0",
     "codelyzer": "^6.0.0",
-    "fs-extra": "^9.0.1",
-    "git-describe": "^4.0.4",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.0",
