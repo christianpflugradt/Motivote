@@ -18,7 +18,7 @@
       <div class="description">{{description}}</div>
     </div>
     <div *ngFor="let option of options">
-      <div class="optiontext" (click)="clickOption(option)">
+      <div [ngClass]="optionClass(option)" (click)="clickOption(option)">
         <span>{{option.text}}</span>
         <mat-icon matBadgePosition="above after" matBadge="{{option.likes}}" matBadgeOverlap="false">
           {{optionIcon(option)}}

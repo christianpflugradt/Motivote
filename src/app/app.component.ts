@@ -53,6 +53,10 @@ export class AppComponent implements OnInit {
     return Math.floor(100 * option.likes / highest);
   }
 
+  optionClass(option: Option): string {
+    return option.liked ? 'optiontextliked' : 'optiontext';
+  }
+
   optionIcon(option: Option): string {
     return option.liked ? 'favorite' : 'favorite_border';
   }

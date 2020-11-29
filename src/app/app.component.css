@@ -1,6 +1,6 @@
 .pollheadline {
   padding: 10px;
-  border: #03B98F dotted;
+  border: #4267B2 dotted;
   border-radius: 15px;
 }
 
@@ -28,6 +28,17 @@
 .optiontext {
   padding-top: 40px;
   cursor: pointer;
+  color: black;
+}
+
+.optiontextliked {
+  padding-top: 40px;
+  cursor: pointer;
+  color: #4267B2;
+}
+
+.optiontext:hover {
+  color: #e95419;
 }
 
 .optionauthor {
