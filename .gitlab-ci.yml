@@ -7,7 +7,7 @@ stages:
 variables:
   DOCKER_DRIVER: overlay2
 
-build:
+build_snapshot:
   stage: build
   before_script:
     - npm install
@@ -18,6 +18,20 @@ build:
     paths:
       - dist/main/*
     expire_in: 1 week
+
+publish_release:
+  stage: release
+  before_script:
+    - npm install
+    - npm install --save @angular/material @angular/cdk
+  script: npm run buildprod
+  artifacts:
+    when: always
+    paths:
+      - dist/main/*
+    expire_in: 1 week
+  only:
+    - tags
 
 semver:
   stage: release

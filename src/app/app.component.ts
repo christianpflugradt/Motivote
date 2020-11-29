@@ -3,6 +3,8 @@ import {Option} from './option';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {ActivatedRoute} from '@angular/router';
+import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
+import {environment} from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -41,6 +43,12 @@ export class AppComponent implements OnInit {
       { text: 'Krosse Krabbe Pizza', author: 'Toni', likes: 3 } as Option,
       { text: 'Ragù alla bolognese', author: 'Toni', likes: 2 } as Option,
     ];
+  }
+
+  clientVersion(): string {
+    return !!environment.version.tag
+      ? environment.version.tag
+      : 'dev-' + environment.version.hash;
   }
 
   maxLikes(): number {
