@@ -46,9 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   clientVersion(): string {
-    return !!environment.version.tag
-      ? environment.version.tag
-      : 'dev-' + environment.version.hash;
+    return environment.version;
   }
 
   maxLikes(): number {
