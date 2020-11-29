@@ -11,19 +11,19 @@ build_snapshot:
   stage: build
   before_script:
     - npm install
-    - npm install --save @angular/material @angular/cdk
   script: npm run build
   artifacts:
     when: always
     paths:
       - dist/main/*
     expire_in: 1 week
+  except:
+    - tags
 
 publish_release:
   stage: release
   before_script:
     - npm install
-    - npm install --save @angular/material @angular/cdk
   script: npm run buildprod
   artifacts:
     when: always

@@ -4,7 +4,7 @@ const git = require('git-describe');
 const path = require('path');
 const fs = require('fs-extra');
 
-const info = git.gitDescribeSync({ longSemver: true });
+const info = git.gitDescribeSync({ longSemver: true, match: '[0-9]*' });
 const file = path.resolve(__dirname, 'src', 'environments', 'version.ts');
 
 fs.writeFileSync(
