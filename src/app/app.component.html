@@ -8,11 +8,11 @@
   </div>
   <!--<div class="separator">.</div>-->
 
-  <div *ngIf="!token" class="nocontent">
+  <div *ngIf="!authorized" class="nocontent">
     <div>get invited to participate in a poll</div>
   </div>
 
-  <div *ngIf="token" class="content">
+  <div *ngIf="authorized" class="content">
     <div class="pollheadline">
       <div class="welcome">Welcome, {{username}}!</div>
       <app-countdown [deadline]="deadline"></app-countdown>

@@ -13,7 +13,6 @@ export class PollywogService {
   constructor(private http: HttpClient) { }
 
   getPoll(secret: string): Observable<Poll> {
-    console.log(secret);
     return this.http.get<Poll>(this.pollywogUrl, { headers: new HttpHeaders().set('Authorization', secret) });
   }
 
