@@ -27,11 +27,13 @@ export class CountdownComponent implements OnInit {
 
   ngOnInit(): void {
     interval(1000).subscribe((x) => {
-      this.diff = Math.floor((this.deadline.getTime() - new Date().getTime()) / 1000);
-      this.days = this.daysRemaining();
-      this.hours = this.hoursRemaining();
-      this.minutes = this.minutesRemaining();
-      this.seconds = this.secondsRemaining();
+      if (!!this.deadline) {
+        this.diff = Math.floor((this.deadline.getTime() - new Date().getTime()) / 1000);
+        this.days = this.daysRemaining();
+        this.hours = this.hoursRemaining();
+        this.minutes = this.minutesRemaining();
+        this.seconds = this.secondsRemaining();
+      }
     });
   }
 

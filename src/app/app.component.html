@@ -4,15 +4,15 @@
       {{'Motivote ' + clientVersion()}}</a><br><span class="subtitle">a web client for Pollywog</span>
     <span class="header-center">hier kommt ein tolles Logo hin</span>
     <a href="https://gitlab.com/christianpflugradt/pollywog" target="_blank" class="header-right">
-      using Pollywog 0.0.0</a>
+      using Pollywog {{backendVersion}}</a>
   </div>
   <!--<div class="separator">.</div>-->
 
-  <div *ngIf="!username" class="nocontent">
+  <div *ngIf="!token" class="nocontent">
     <div>get invited to participate in a poll</div>
   </div>
 
-  <div *ngIf="username" class="content">
+  <div *ngIf="token" class="content">
     <div class="pollheadline">
       <div class="welcome">Welcome, {{username}}!</div>
       <app-countdown [deadline]="deadline"></app-countdown>

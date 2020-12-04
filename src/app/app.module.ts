@@ -13,6 +13,7 @@ import { CountdownComponent } from './countdown/countdown.component';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
     MatBadgeModule,

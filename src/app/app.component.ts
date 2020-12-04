@@ -5,6 +5,8 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
 import {ActivatedRoute} from '@angular/router';
 import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
 import {environment} from '../environments/environment';
+import {PollywogService} from './pollywog.service';
+import {Poll} from './poll';
 
 @Component({
   selector: 'app-root',
@@ -20,18 +22,25 @@ export class AppComponent implements OnInit {
 
   addOptionValue = '';
 
+  token: string;
   username: string;
+  backendVersion: string;
 
   constructor(public dialog: MatDialog,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private pollywogService: PollywogService) {
+  }
 
-  ngOnInit(): void {
-    this.activatedRoute.fragment.subscribe((fragment: string) => {
-      this.username = fragment;
+  async ngOnInit(): Promise<void> {
+    await this.parseRoute();
+    this.pollywogService.getPoll(this.token).subscribe(poll => {
+      console.log(poll);
+      this.backendVersion = poll.version;
+      this.title = poll.title;
+      this.description = poll.description;
+      this.deadline = new Date(poll.deadline);
+      this.username = poll.participants.find(p => p.id === poll.requester_id).name;
     });
-    this.deadline = new Date('2020-12-01T00:00:00');
-    this.title = 'Mittach';
-    this.description = 'Was wollen wir denn heute Leckeres essen? Hmm...';
     this.options = [
       { text: 'Gulasch', author: 'der Paul', likes: 1 } as Option,
       { text: 'Weißwurst', author: 'Schorsch', likes: 5 } as Option,
@@ -43,6 +52,12 @@ export class AppComponent implements OnInit {
       { text: 'Krosse Krabbe Pizza', author: 'Toni', likes: 3 } as Option,
       { text: 'Ragù alla bolognese', author: 'Toni', likes: 2 } as Option,
     ];
+  }
+
+  async parseRoute(): Promise<void> {
+    await this.activatedRoute.fragment.subscribe((fragment: string) => {
+      this.token = fragment;
+    });
   }
 
   clientVersion(): string {
@@ -100,7 +115,7 @@ export class AppComponent implements OnInit {
   submitOption(): void {
     this.options.push({
       text: this.addOptionValue,
-      author: this.username,
+      author: this.token,
       likes: 0,
       owned: true
     } as Option);
