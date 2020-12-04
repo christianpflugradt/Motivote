@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   token: string;
   username: string;
   backendVersion: string;
+  authorized = false;
 
   constructor(public dialog: MatDialog,
               private activatedRoute: ActivatedRoute,
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
       this.description = poll.description;
       this.deadline = new Date(poll.deadline);
       this.username = poll.participants.find(p => p.id === poll.requester_id).name;
+      this.authorized = true;
     });
     this.options = [
       { text: 'Gulasch', author: 'der Paul', likes: 1 } as Option,
