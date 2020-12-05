@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Poll} from './poll';
+import {Poll, PollOptionVote} from './poll';
 import {Option} from './option';
 
 @Injectable({
@@ -37,6 +37,13 @@ export class PollywogService {
     const result = [];
     options.filter(o => !o.id).forEach(o => result.push(o.text));
     return result;
+  }
+
+  updateVotes(secret: string, votes: PollOptionVote[]): Observable<Poll> {
+    console.log(votes);
+    return this.http.post<Poll>(this.pollywogBaseUrl + '/votes',
+      { votes },
+      { headers: new HttpHeaders().set('Authorization', secret) });
   }
 
 }

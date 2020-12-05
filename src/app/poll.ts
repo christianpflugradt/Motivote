@@ -7,6 +7,7 @@ export interface Poll {
   deadline: string;
   participants: PollParticipant[];
   options: PollOption[];
+  votes: PollOptionVote[];
 }
 
 export interface PollParticipant {
@@ -18,4 +19,10 @@ export interface PollOption {
   id: number;
   participant_id: number;
   text: string;
+}
+
+export interface PollOptionVote {
+  option_id: number;
+  participant_id: number;
+  weight: number;
 }

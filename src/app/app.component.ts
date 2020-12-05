@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
 import {environment} from '../environments/environment';
 import {PollywogService} from './pollywog.service';
-import {Poll, PollParticipant} from './poll';
+import {Poll, PollOptionVote, PollParticipant} from './poll';
 import {interval} from 'rxjs';
 
 @Component({
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   token: string;
   username: string;
+  userid: number;
   backendVersion: string;
   authorized = false;
 
@@ -79,6 +80,7 @@ export class AppComponent implements OnInit {
       option.liked = true;
       option.likes += 1;
     }
+    this.updateVotes();
   }
 
   clickDelete(option: Option): void {
@@ -126,12 +128,28 @@ export class AppComponent implements OnInit {
     });
   }
 
+  private updateVotes(): void {
+    this.pollywogService.updateVotes(this.token, this.grabVotes()).subscribe(poll => {
+      this.renderPoll(poll);
+    });
+  }
+
+  private grabVotes(): PollOptionVote[] {
+    const pollOptionVotes = [];
+    this.options.filter(option => option.liked).forEach(option => pollOptionVotes.push({
+      participant_id: this.userid,
+      option_id: option.id,
+      weight: 1} as PollOptionVote ));
+    return pollOptionVotes;
+  }
+
   private renderPoll(poll: Poll): void {
     this.backendVersion = poll.version;
     this.title = poll.title;
     this.description = poll.description;
     this.deadline = new Date(poll.deadline);
     this.username = this.authorNameById(poll.requester_id, poll.participants);
+    this.userid = poll.requester_id;
     this.authorized = true;
     this.options = [];
     poll.options.forEach(option => {
@@ -140,10 +158,18 @@ export class AppComponent implements OnInit {
         text: option.text,
         author: this.authorNameById(option.participant_id, poll.participants),
         owned: poll.requester_id === option.participant_id,
-        likes: 0,
-        liked: false,
+        likes: this.countVotesForOption(option.id, poll.votes),
+        liked: this.hasVotedForOption(poll.requester_id, option.id, poll.votes),
       } as Option);
     });
+  }
+
+  private hasVotedForOption(participantId: number, optionId: number, votes: PollOptionVote[]): boolean {
+    return votes.filter(vote => vote.participant_id === participantId && vote.option_id === optionId).length > 0;
+  }
+
+  private countVotesForOption(optionId: number, votes: PollOptionVote[]): number {
+    return votes.filter(vote => optionId === vote.option_id).length;
   }
 
 }
