@@ -6,7 +6,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
 import {environment} from '../environments/environment';
 import {PollywogService} from './pollywog.service';
-import {Poll} from './poll';
+import {Poll, PollParticipant} from './poll';
 
 @Component({
   selector: 'app-root',
@@ -36,30 +36,37 @@ export class AppComponent implements OnInit {
     await this.parseRoute();
     this.pollywogService.getPoll(this.token).subscribe(poll => {
       console.log(poll);
-      this.backendVersion = poll.version;
-      this.title = poll.title;
-      this.description = poll.description;
-      this.deadline = new Date(poll.deadline);
-      this.username = poll.participants.find(p => p.id === poll.requester_id).name;
-      this.authorized = true;
+      this.renderPoll(poll);
     });
-    this.options = [
-      { text: 'Gulasch', author: 'der Paul', likes: 1 } as Option,
-      { text: 'Weißwurst', author: 'Schorsch', likes: 5 } as Option,
-      { text: 'Борщ + 寿司', author: 'ich', likes: 0, owned: true } as Option,
-      { text: 'Grünkohl', author: 'Schorsch', likes: 4 } as Option,
-      { text: 'irgendwas Warmes ohne Fleisch', author: 'Klothilde', likes: 1 } as Option,
-      { text: 'Petit pain rond fourré de biftek haché et de fromage et des frites', author: 'ich', likes: 1, owned: true } as Option,
-      { text: 'Pflaumenkuchen mit Pálinka', author: 'Klothilde', likes: 1 } as Option,
-      { text: 'Krosse Krabbe Pizza', author: 'Toni', likes: 3 } as Option,
-      { text: 'Ragù alla bolognese', author: 'Toni', likes: 2 } as Option,
-    ];
   }
 
   async parseRoute(): Promise<void> {
     await this.activatedRoute.fragment.subscribe((fragment: string) => {
       this.token = fragment;
     });
+  }
+
+  private renderPoll(poll: Poll): void {
+    this.backendVersion = poll.version;
+    this.title = poll.title;
+    this.description = poll.description;
+    this.deadline = new Date(poll.deadline);
+    this.username = this.authorNameById(poll.requester_id, poll.participants);
+    this.authorized = true;
+    this.options = [];
+    poll.options.forEach(option => {
+      this.options.push({
+        text: option.text,
+        author: this.authorNameById(option.participant_id, poll.participants),
+        owned: poll.requester_id === option.participant_id,
+        likes: 0,
+        liked: false,
+      } as Option);
+    });
+  }
+
+  private authorNameById(id: number, participants: PollParticipant[]): string {
+    return participants.find(p => p.id === id).name;
   }
 
   clientVersion(): string {
