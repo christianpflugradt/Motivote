@@ -5,10 +5,17 @@ export interface Poll {
   title: string;
   description: string;
   deadline: string;
-  participants: Participant[];
+  participants: PollParticipant[];
+  options: PollOption[];
 }
 
-export interface Participant {
+export interface PollParticipant {
   id: number;
   name: string;
+}
+
+export interface PollOption {
+  id: number;
+  participant_id: number;
+  text: string;
 }
