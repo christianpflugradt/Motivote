@@ -37,6 +37,11 @@
   color: #4267B2;
 }
 
+.optiontextdone {
+  padding-top: 40px;
+  color: black;
+}
+
 .optiontext:hover {
   color: #e95419;
 }

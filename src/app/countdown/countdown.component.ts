@@ -10,6 +10,8 @@ export class CountdownComponent implements OnInit {
 
   @Input()
   deadline: Date;
+  @Input()
+  open: boolean;
 
   SEC_PER_MINUTE = 60;
   SEC_PER_HOUR = 60 * 60;

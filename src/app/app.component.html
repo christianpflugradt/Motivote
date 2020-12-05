@@ -15,7 +15,7 @@
   <div *ngIf="authorized" class="content">
     <div class="pollheadline">
       <div class="welcome">Welcome, {{username}}!</div>
-      <app-countdown [deadline]="deadline"></app-countdown>
+      <app-countdown [deadline]="deadline" [open]="open"></app-countdown>
       <div class="title">{{title}}</div>
       <div class="description">{{description}}</div>
     </div>
@@ -28,15 +28,15 @@
       </div>
       <div class="optionauthor">
         <span class="optionauthor">by {{option.author}}</span>
-        <mat-icon *ngIf="option.owned" (click)="clickDelete(option)">delete_forever</mat-icon>
+        <mat-icon *ngIf="option.owned && open" (click)="clickDelete(option)">delete_forever</mat-icon>
       </div>
       <mat-progress-bar mode="determinate" value="{{progress(option)}}"></mat-progress-bar>
     </div>
-    <mat-form-field class="addoption">
+    <mat-form-field *ngIf="open" class="addoption">
       <mat-label>add option</mat-label>
       <input matInput placeholder="your option" (keyup.enter)="submitOption()" [(ngModel)]="addOptionValue">
     </mat-form-field>
-    <mat-icon *ngIf="addOptionValue !== ''" (click)="submitOption()">send</mat-icon>
+    <mat-icon *ngIf="addOptionValue !== '' && open" (click)="submitOption()">send</mat-icon>
   </div>
 
   <div class="footer">Copyright © 2020 Christian Pflugradt</div>
