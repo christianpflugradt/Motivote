@@ -56,6 +56,7 @@ export class AppComponent implements OnInit {
     this.options = [];
     poll.options.forEach(option => {
       this.options.push({
+        id: option.id,
         text: option.text,
         author: this.authorNameById(option.participant_id, poll.participants),
         owned: poll.requester_id === option.participant_id,
@@ -115,6 +116,7 @@ export class AppComponent implements OnInit {
 
   private deleteOption(option: Option): void {
     this.options = this.options.filter(o => o !== option);
+    this.updateOptions();
   }
 
   private likedByOthers(option: Option): boolean {
@@ -124,11 +126,18 @@ export class AppComponent implements OnInit {
   submitOption(): void {
     this.options.push({
       text: this.addOptionValue,
-      author: this.token,
+      author: this.username,
       likes: 0,
       owned: true
     } as Option);
     this.addOptionValue = '';
+    this.updateOptions();
+  }
+
+  private updateOptions(): void {
+    this.pollywogService.updateOptions(this.token, this.options).subscribe(poll => {
+      this.renderPoll(poll);
+    });
   }
 
 }
