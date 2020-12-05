@@ -7,6 +7,7 @@ import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environ
 import {environment} from '../environments/environment';
 import {PollywogService} from './pollywog.service';
 import {Poll, PollParticipant} from './poll';
+import {interval} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -34,35 +35,13 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.parseRoute();
-    this.pollywogService.getPoll(this.token).subscribe(poll => {
-      console.log(poll);
-      this.renderPoll(poll);
-    });
+    this.refreshPoll();
+    interval(10 * 1000).subscribe(x => this.refreshPoll());
   }
 
   async parseRoute(): Promise<void> {
     await this.activatedRoute.fragment.subscribe((fragment: string) => {
       this.token = fragment;
-    });
-  }
-
-  private renderPoll(poll: Poll): void {
-    this.backendVersion = poll.version;
-    this.title = poll.title;
-    this.description = poll.description;
-    this.deadline = new Date(poll.deadline);
-    this.username = this.authorNameById(poll.requester_id, poll.participants);
-    this.authorized = true;
-    this.options = [];
-    poll.options.forEach(option => {
-      this.options.push({
-        id: option.id,
-        text: option.text,
-        author: this.authorNameById(option.participant_id, poll.participants),
-        owned: poll.requester_id === option.participant_id,
-        likes: 0,
-        liked: false,
-      } as Option);
     });
   }
 
@@ -134,9 +113,36 @@ export class AppComponent implements OnInit {
     this.updateOptions();
   }
 
+  private refreshPoll(): void {
+    this.pollywogService.getPoll(this.token).subscribe(poll => {
+      console.log(poll);
+      this.renderPoll(poll);
+    });
+  }
+
   private updateOptions(): void {
     this.pollywogService.updateOptions(this.token, this.options).subscribe(poll => {
       this.renderPoll(poll);
+    });
+  }
+
+  private renderPoll(poll: Poll): void {
+    this.backendVersion = poll.version;
+    this.title = poll.title;
+    this.description = poll.description;
+    this.deadline = new Date(poll.deadline);
+    this.username = this.authorNameById(poll.requester_id, poll.participants);
+    this.authorized = true;
+    this.options = [];
+    poll.options.forEach(option => {
+      this.options.push({
+        id: option.id,
+        text: option.text,
+        author: this.authorNameById(option.participant_id, poll.participants),
+        owned: poll.requester_id === option.participant_id,
+        likes: 0,
+        liked: false,
+      } as Option);
     });
   }
 
