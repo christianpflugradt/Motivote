@@ -3,7 +3,6 @@ import {Option} from './option';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 import {ActivatedRoute} from '@angular/router';
-import {Environment} from '@angular/compiler-cli/src/ngtsc/typecheck/src/environment';
 import {environment} from '../environments/environment';
 import {PollywogService} from './pollywog.service';
 import {Poll, PollOptionVote, PollParticipant} from './poll';
@@ -19,6 +18,7 @@ export class AppComponent implements OnInit {
   title: string;
   description: string;
   deadline: Date;
+  open: boolean;
   options: Option[];
 
   addOptionValue = '';
@@ -65,33 +65,41 @@ export class AppComponent implements OnInit {
   }
 
   optionClass(option: Option): string {
-    return option.liked ? 'optiontextliked' : 'optiontext';
+    if (this.open) {
+      return option.liked ? 'optiontextliked' : 'optiontext';
+    } else {
+      return 'optiontextdone';
+    }
   }
 
   optionIcon(option: Option): string {
-    return option.liked ? 'favorite' : 'favorite_border';
+    return option.liked && this.open ? 'favorite' : 'favorite_border';
   }
 
   clickOption(option: Option): void {
-    if (option.liked) {
-      option.liked = false;
-      option.likes -= 1;
-    } else {
-      option.liked = true;
-      option.likes += 1;
+    if (this.open) {
+      if (option.liked) {
+        option.liked = false;
+        option.likes -= 1;
+      } else {
+        option.liked = true;
+        option.likes += 1;
+      }
+      this.updateVotes();
     }
-    this.updateVotes();
   }
 
   clickDelete(option: Option): void {
-    if (this.likedByOthers(option)) {
-      this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe(doDelete => {
-        if (doDelete) {
-          this.deleteOption(option);
-        }
-      });
-    } else {
-      this.deleteOption(option);
+    if (this.open) {
+      if (this.likedByOthers(option)) {
+        this.dialog.open(ConfirmDialogComponent).afterClosed().subscribe(doDelete => {
+          if (doDelete) {
+            this.deleteOption(option);
+          }
+        });
+      } else {
+        this.deleteOption(option);
+      }
     }
   }
 
@@ -148,6 +156,7 @@ export class AppComponent implements OnInit {
     this.title = poll.title;
     this.description = poll.description;
     this.deadline = new Date(poll.deadline);
+    this.open = poll.open;
     this.username = this.authorNameById(poll.requester_id, poll.participants);
     this.userid = poll.requester_id;
     this.authorized = true;

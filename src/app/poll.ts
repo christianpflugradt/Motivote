@@ -5,6 +5,7 @@ export interface Poll {
   title: string;
   description: string;
   deadline: string;
+  open: boolean;
   participants: PollParticipant[];
   options: PollOption[];
   votes: PollOptionVote[];
