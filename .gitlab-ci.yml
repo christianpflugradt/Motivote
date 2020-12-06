@@ -35,6 +35,22 @@ publish_release:
   only:
     - tags
 
+custom_release:
+  stage: release
+  before_script:
+    - npm install
+    - cat $POLLYWOG_ENVIRONMENT > src/environments/environment.pollywog.ts
+    - echo "export const VERSION = '`git describe --tags`'" > src/environments/version.ts
+  script: npm run buildpollywog
+  artifacts:
+    when: always
+    paths:
+      - dist/main/*
+    expire_in: 1 week
+  when: manual
+  only:
+    - tags
+
 semver:
   stage: release
   before_script:

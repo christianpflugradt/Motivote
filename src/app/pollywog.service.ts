@@ -3,13 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Poll, PollOptionVote} from './poll';
 import {Option} from './option';
+import {environment} from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PollywogService {
 
-  private pollywogBaseUrl = 'http://localhost:9999';
+  private pollywogBaseUrl = environment.pollywogUrl;
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +30,9 @@ export class PollywogService {
 
   retrieveKeepOptions(options: Option[]): number[] {
     const result = [];
-    options.filter(o => !!o.id).forEach(o => result.push(o.id));
+    options
+      .filter(o => !!o.id && o.owned )
+      .forEach(o => result.push(o.id));
     return result;
   }
 
