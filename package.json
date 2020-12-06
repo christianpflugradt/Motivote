@@ -5,7 +5,8 @@
     "ng": "ng",
     "start": "ng serve --port 4200",
     "build": "ng build",
-    "buildprod": "ng build --prod",
+    "buildprod": "ng build --prod --base-href='/motivote/'",
+    "buildpollywog": "ng build --configuration pollywog --base-href='/motivote/'",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
