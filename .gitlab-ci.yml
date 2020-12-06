@@ -55,7 +55,9 @@ semver:
   stage: release
   before_script:
     - npm install @semantic-release/gitlab
+    - cat $SEM_RELEASE_OPTIONS
     - cat $SEM_RELEASE_OPTIONS > .releaserc.yml
+    - cat .releaserc.yml
   script: npx semantic-release -t \${version}
   only:
     - master
