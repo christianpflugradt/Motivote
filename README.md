@@ -54,4 +54,3 @@ components run in the same domain on the same port. I recommend to do the later 
 instance behind a reverse proxy like Nginx. Simply run Pollywog on any port you like and configure
 a proxy pass (if using Nginx) to route requests for `www.your-server-name.tld/pollywog/` to the port
 Pollywog is listening to.
--
