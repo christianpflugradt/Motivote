@@ -19,6 +19,9 @@ export class AppComponent implements OnInit {
   description: string;
   deadline: Date;
   open: boolean;
+  optionLimit: number;
+  voteLimit: number;
+
   options: Option[];
   addOptionValue = '';
 
@@ -82,7 +85,7 @@ export class AppComponent implements OnInit {
       if (option.liked) {
         option.liked = false;
         option.likes -= 1;
-      } else {
+      } else if (!this.voteLimitReached()) {
         option.liked = true;
         option.likes += 1;
       }
@@ -161,6 +164,8 @@ export class AppComponent implements OnInit {
     this.username = this.authorNameById(poll.requester_id, poll.participants);
     this.userid = poll.requester_id;
     this.authorized = true;
+    this.optionLimit = poll.params.optionsPerParticipant;
+    this.voteLimit = poll.params.votesPerParticipant;
     this.options = [];
     poll.options.forEach(option => {
       this.options.push({
@@ -180,6 +185,30 @@ export class AppComponent implements OnInit {
 
   private countVotesForOption(optionId: number, votes: PollOptionVote[]): number {
     return votes.filter(vote => optionId === vote.option_id).length;
+  }
+
+  optionsUsed(): number {
+    return this.options.filter(option => option.owned).length;
+  }
+
+  votesUsed(): number {
+    return this.options.filter(option => option.liked).length;
+  }
+
+  private optionsLeft(): number {
+    return this.optionLimit - this.optionsUsed();
+  }
+
+  private votesLeft(): number {
+    return this.voteLimit - this.votesUsed();
+  }
+
+  optionLimitReached(): boolean {
+    return this.optionsLeft() < 1;
+  }
+
+  voteLimitReached(): boolean {
+    return this.votesLeft() < 1;
   }
 
 }

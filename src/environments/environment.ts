@@ -5,7 +5,7 @@ import { VERSION } from './version';
 
 export const environment = {
   pollywogUrl: 'http://localhost:9999',
-  favicon: 'https://pflugradts.de/assets/favicon/favicon-motivote-32x32.png',
+  favicon: 'favicon.ico',
   production: false,
   version: VERSION,
 };
