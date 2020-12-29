@@ -9,6 +9,7 @@ export interface Poll {
   participants: PollParticipant[];
   options: PollOption[];
   votes: PollOptionVote[];
+  params: PollParams;
 }
 
 export interface PollParticipant {
@@ -26,4 +27,9 @@ export interface PollOptionVote {
   option_id: number;
   participant_id: number;
   weight: number;
+}
+
+export interface PollParams {
+  optionsPerParticipant: number;
+  votesPerParticipant: number;
 }

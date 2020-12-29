@@ -19,6 +19,7 @@
       <div class="title">{{title}}</div>
       <div class="description">{{description}}</div>
     </div>
+    <div class="pollparams">{{optionsUsed()}} / {{optionLimit}} options used, {{votesUsed()}} / {{voteLimit}} votes used</div>
     <div *ngFor="let option of options">
       <div [ngClass]="optionClass(option)" (click)="clickOption(option)">
         <span>{{option.text}}</span>
@@ -32,7 +33,7 @@
       </div>
       <mat-progress-bar mode="determinate" value="{{progress(option)}}"></mat-progress-bar>
     </div>
-    <mat-form-field *ngIf="open" class="addoption">
+    <mat-form-field *ngIf="open && !optionLimitReached()" class="addoption">
       <mat-label>add option</mat-label>
       <input matInput placeholder="your option" (keyup.enter)="submitOption()" [(ngModel)]="addOptionValue">
     </mat-form-field>

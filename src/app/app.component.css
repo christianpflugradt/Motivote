@@ -1,6 +1,6 @@
 .pollheadline {
   padding: 10px;
-  border: #4267B2 dotted;
+  background-color: ghostwhite;
   border-radius: 15px;
 }
 
@@ -23,6 +23,11 @@
   font-style: italic;
   font-size: 20px;
   padding: 10px;
+}
+
+.pollparams {
+  float: right;
+  font-size: small;
 }
 
 .optiontext {
