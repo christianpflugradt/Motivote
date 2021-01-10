@@ -52,7 +52,7 @@ the app in the distributable index.html.
 Another thing you must pay attention to is [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing).
 For local development you can use a browser plugin like "CORS Everywhere" for Firefox but for using
 Motivote and Pollywog in production you must configure CORS in your webserver or make sure both
-components run in the same domain on the same port. I recommend to do the later and to put your Pollywog
+components run in the same domain on the same port. I recommend to do the latter and to put your Pollywog
 instance behind a reverse proxy like Nginx. Simply run Pollywog on any port you like and configure
-a proxy pass (if using Nginx) to route requests for `www.your-server-name.tld/pollywog/` to the port
+a proxy pass to route requests for `www.your-server-name.tld/pollywog/` to the port
 Pollywog is listening to.
