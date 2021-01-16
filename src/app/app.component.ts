@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   voteLimit: number;
   sortStyle: string;
 
+  optionIds: number[];
   options: Option[];
   addOptionValue = '';
 
@@ -130,7 +131,6 @@ export class AppComponent implements OnInit {
 
   private refreshPoll(): void {
     this.pollywogService.getPoll(this.token).subscribe(poll => {
-      console.log(poll);
       this.renderPoll(poll);
     });
   }
@@ -217,8 +217,10 @@ export class AppComponent implements OnInit {
   }
 
   sortedOptions(): Option[] {
-    if (this.sortStyle === '2') {
-      return this.options.reverse();
+    if (this.sortStyle === '1') {
+      return this.options.sort((a, b) => a.id - b.id);
+    } else if (this.sortStyle === '2') {
+      return this.options.sort((a, b) => b.id - a.id);
     } else if (this.sortStyle === '3') {
       return this.options.sort((a, b) => {
         if (b.likes === a.likes) {
