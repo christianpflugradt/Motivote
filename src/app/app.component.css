@@ -26,8 +26,13 @@
 }
 
 .pollparams {
-  float: right;
+  float: left;
   font-size: small;
+}
+
+.sortoptions {
+  float: right;
+  margin-left: 20px;
 }
 
 .optiontext {

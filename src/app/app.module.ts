@@ -14,6 +14,9 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -29,9 +32,12 @@ import {HttpClientModule} from '@angular/common/http';
     MatFormFieldModule,
     MatInputModule,
     MatBadgeModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     MatProgressBarModule,
     MatIconModule,
     MatDialogModule,
+    MatTooltipModule,
     RouterModule.forRoot([])
   ],
   providers: [],
