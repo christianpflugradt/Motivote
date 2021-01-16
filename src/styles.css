@@ -94,6 +94,15 @@ body {
   justify-content: center;
 }
 
+.mat-button-toggle-label-content {
+  line-height: 32px !important;
+  font-size: small;
+}
+
+.mat-button-toggle-label-content .mat-icon {
+  font-size: small;
+}
+
 @media screen and (max-width: 800px) {
   .header a {
     float: none;

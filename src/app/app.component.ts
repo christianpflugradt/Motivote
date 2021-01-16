@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   open: boolean;
   optionLimit: number;
   voteLimit: number;
+  sortStyle: string;
 
   options: Option[];
   addOptionValue = '';
@@ -209,6 +210,41 @@ export class AppComponent implements OnInit {
 
   voteLimitReached(): boolean {
     return this.votesLeft() < 1;
+  }
+
+  sortOptions(style: string): void {
+    this.sortStyle = style;
+  }
+
+  sortedOptions(): Option[] {
+    if (this.sortStyle === '2') {
+      return this.options.reverse();
+    } else if (this.sortStyle === '3') {
+      return this.options.sort((a, b) => {
+        if (b.likes === a.likes) {
+          return a.text.localeCompare(b.text);
+        } else {
+          return b.likes - a.likes;
+        }
+      });
+    } else if (this.sortStyle === '4') {
+      return this.options.sort((a, b) => a.text.localeCompare(b.text));
+    } else if (this.sortStyle === '5') {
+      return this.options.sort((a, b) => b.text.localeCompare(a.text));
+    } else if (this.sortStyle === '6') {
+      return this.options.sort((a, b) => {
+        if (a.owned && !b.owned) {
+          return -1;
+        } else if (!a.owned && b.owned) {
+          return 1;
+        } else if (a.author !== b.author) {
+          return a.author.localeCompare(b.author);
+        } else {
+          return a.text.localeCompare(b.text);
+        }
+      });
+    }
+    return this.options;
   }
 
 }

@@ -19,8 +19,32 @@
       <div class="title">{{title}}</div>
       <div class="description">{{description}}</div>
     </div>
-    <div class="pollparams">{{optionsUsed()}} / {{optionLimit}} options used, {{votesUsed()}} / {{voteLimit}} votes used</div>
-    <div *ngFor="let option of options">
+    <div class="pollparams">
+      {{optionsUsed()}} / {{optionLimit}} options used, {{votesUsed()}} / {{voteLimit}} votes used
+    </div>
+    <div class="sortoptions">
+      <mat-button-toggle-group value="1">
+        <mat-button-toggle value="1" (change)="sortOptions($event.value)">
+          <mat-icon matTooltip="oldest first">calendar_today</mat-icon>&uarr;
+        </mat-button-toggle>
+        <mat-button-toggle value="2" (change)="sortOptions($event.value)">
+          <mat-icon matTooltip="newest first">calendar_today</mat-icon>&darr;
+        </mat-button-toggle>
+        <mat-button-toggle value="3" (change)="sortOptions($event.value)">
+          <mat-icon matTooltip="most liked first">favorite</mat-icon>
+        </mat-button-toggle>
+        <mat-button-toggle value="4" (change)="sortOptions($event.value)">
+          <mat-icon matTooltip="A-Z">sort_by_alpha</mat-icon>&uarr;
+        </mat-button-toggle>
+        <mat-button-toggle value="5" (change)="sortOptions($event.value)">
+          <mat-icon matTooltip="Z-A">sort_by_alpha</mat-icon>&darr;
+        </mat-button-toggle>
+        <mat-button-toggle value="6" (change)="sortOptions($event.value)">
+          <mat-icon matTooltip="by users">face</mat-icon>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div *ngFor="let option of sortedOptions()">
       <div [ngClass]="optionClass(option)" (click)="clickOption(option)">
         <span>{{option.text}}</span>
         <mat-icon matBadgePosition="above after" matBadge="{{option.likes}}" matBadgeOverlap="false">
