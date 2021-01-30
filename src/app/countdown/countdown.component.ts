@@ -63,4 +63,10 @@ export class CountdownComponent implements OnInit {
       - (this.minutesRemaining() * this.SEC_PER_MINUTE));
   }
 
+  additionalCountdownClass(): string {
+    if (this.days > 2 ) { return ''; }
+    else if (this.days > 0) { return 'deadlineimminent2'; }
+    else { return 'deadlineimminent1'; }
+  }
+
 }

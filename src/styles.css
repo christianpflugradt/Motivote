@@ -32,6 +32,15 @@ body {
   text-align: right;
 }
 
+.deadlineimminent2 {
+  color: orangered;
+}
+
+.deadlineimminent1 {
+  font-weight: bold;
+  color: crimson;
+}
+
 .mat-dialog-container {
   background-color: ghostwhite;
 }
