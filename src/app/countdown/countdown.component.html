@@ -1,2 +1,2 @@
-<span *ngIf="open" class="countdown">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s remaining until Poll is closed.</span>
+<span *ngIf="open" class="countdown" [ngClass]="additionalCountdownClass()">{{days}}d {{hours}}h {{minutes}}m {{seconds}}s remaining until Poll is closed.</span>
 <span *ngIf="!open" class="countdown">This Poll is closed.</span>
