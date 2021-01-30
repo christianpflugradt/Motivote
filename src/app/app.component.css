@@ -63,6 +63,16 @@
   padding-bottom: 10px;
 }
 
+.singlebestoption {
+  margin-top: 5px;
+  background-color: #ffc8b0;
+}
+
+.multibestoption {
+  margin-top: 5px;
+  background-color: #ffe3d7;
+}
+
 .addoption {
   padding-top: 20px;
   width: 80%;

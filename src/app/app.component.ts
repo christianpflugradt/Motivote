@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   optionIds: number[];
   options: Option[];
+  bestIds = [];
   addOptionValue = '';
 
   token: string;
@@ -71,11 +72,13 @@ export class AppComponent implements OnInit {
   }
 
   optionClass(option: Option): string {
-    if (this.open) {
-      return option.liked ? 'optiontextliked' : 'optiontext';
-    } else {
-      return 'optiontextdone';
-    }
+    let optionClass = '';
+    optionClass = this.open
+      ? option.liked
+        ? 'optiontextliked'
+        : 'optiontext'
+      : 'optiontextdone';
+    return optionClass + ' ' + this.rankClass(option);
   }
 
   optionIcon(option: Option): string {
@@ -178,6 +181,7 @@ export class AppComponent implements OnInit {
         liked: this.hasVotedForOption(poll.requester_id, option.id, poll.votes),
       } as Option);
     });
+    this.updateBestIds();
   }
 
   private hasVotedForOption(participantId: number, optionId: number, votes: PollOptionVote[]): boolean {
@@ -210,6 +214,31 @@ export class AppComponent implements OnInit {
 
   voteLimitReached(): boolean {
     return this.votesLeft() < 1;
+  }
+
+  private rankClass(option: Option): string {
+    if (this.bestIds.includes(option.id)) {
+      if (this.bestIds.length > 1) {
+        return 'multibestoption';
+      } else {
+        return 'singlebestoption';
+      }
+    }
+    return '';
+  }
+
+  updateBestIds(): void {
+    let highest = 0;
+    this.bestIds = [];
+    for (const o of this.options) {
+      if (o.likes > 1 && o.likes === highest) {
+        this.bestIds.push(o.id);
+      } else if (o.likes > 1 && o.likes > highest) {
+        highest = o.likes;
+        this.bestIds = [];
+        this.bestIds.push(o.id);
+      }
+    }
   }
 
   sortOptions(style: string): void {
