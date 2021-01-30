@@ -72,8 +72,8 @@ export class AppComponent implements OnInit {
   }
 
   optionClass(option: Option): string {
-    let optionClass = '';
-    optionClass = this.open
+    let optionClass = 'optiontextall ';
+    optionClass += this.open
       ? option.liked
         ? 'optiontextliked'
         : 'optiontext'

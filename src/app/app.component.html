@@ -44,6 +44,7 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
+    <div style="height: 20px"></div>
     <div *ngFor="let option of sortedOptions()">
       <div [ngClass]="optionClass(option)" (click)="clickOption(option)">
           <span>{{option.text}}</span>
