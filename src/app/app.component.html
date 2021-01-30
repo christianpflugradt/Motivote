@@ -46,16 +46,16 @@
     </div>
     <div *ngFor="let option of sortedOptions()">
       <div [ngClass]="optionClass(option)" (click)="clickOption(option)">
-        <span>{{option.text}}</span>
-        <mat-icon matBadgePosition="above after" matBadge="{{option.likes}}" matBadgeOverlap="false">
-          {{optionIcon(option)}}
-        </mat-icon>
+          <span>{{option.text}}</span>
+          <mat-icon matBadgePosition="above after" matBadge="{{option.likes}}" matBadgeOverlap="false">
+            {{optionIcon(option)}}
+          </mat-icon>
+        <div class="optionauthor">
+          <span class="optionauthor">by {{option.author}}</span>
+          <mat-icon *ngIf="option.owned && open" (click)="clickDelete(option)">delete_forever</mat-icon>
+        </div>
+        <mat-progress-bar mode="determinate" value="{{progress(option)}}"></mat-progress-bar>
       </div>
-      <div class="optionauthor">
-        <span class="optionauthor">by {{option.author}}</span>
-        <mat-icon *ngIf="option.owned && open" (click)="clickDelete(option)">delete_forever</mat-icon>
-      </div>
-      <mat-progress-bar mode="determinate" value="{{progress(option)}}"></mat-progress-bar>
     </div>
     <mat-form-field *ngIf="open && !optionLimitReached()" class="addoption">
       <mat-label>add option</mat-label>
