@@ -26,30 +26,34 @@
 }
 
 .pollparams {
+  border: #4267B2 1px;
   float: left;
   font-size: small;
 }
 
 .sortoptions {
   float: right;
+  margin-top: 5px;
   margin-right: 10px;
 }
 
+.optiontextall {
+  padding: 25px 10px 5px;
+  border-radius: 10px;
+}
+
 .optiontext {
-  padding-top: 40px;
   cursor: pointer;
   color: black;
 }
 
 .optiontextliked {
-  padding-top: 40px;
   cursor: pointer;
   color: #4267B2;
 }
 
 .optiontextdone {
   cursor: default;
-  padding-top: 40px;
   color: black;
 }
 
@@ -58,6 +62,7 @@
 }
 
 .optionauthor {
+  padding-left: 5px;
   padding-top: 5px;
   font-size: 15px;
   padding-bottom: 10px;
@@ -65,12 +70,12 @@
 
 .singlebestoption {
   margin-top: 5px;
-  background-color: #ffc8b0;
+  background-color: #dfdfff;
 }
 
 .multibestoption {
   margin-top: 5px;
-  background-color: #ffe3d7;
+  background-color: #f1f1ff;
 }
 
 .addoption {
