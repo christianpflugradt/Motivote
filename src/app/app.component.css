@@ -48,6 +48,7 @@
 }
 
 .optiontextdone {
+  cursor: default;
   padding-top: 40px;
   color: black;
 }
@@ -60,10 +61,6 @@
   padding-top: 5px;
   font-size: 15px;
   padding-bottom: 10px;
-}
-
-.mat-icon {
-  cursor: pointer;
 }
 
 .addoption {

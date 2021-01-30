@@ -19,7 +19,7 @@
       <div class="title">{{title}}</div>
       <div class="description">{{description}}</div>
     </div>
-    <div class="pollparams">
+    <div *ngIf=open class="pollparams">
       {{optionsUsed()}} / {{optionLimit}} options used, {{votesUsed()}} / {{voteLimit}} votes used
     </div>
     <div class="sortoptions">
