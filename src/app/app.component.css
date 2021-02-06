@@ -68,6 +68,11 @@
   padding-bottom: 10px;
 }
 
+.optiondelete:hover {
+  cursor: pointer;
+  color: #e95419;
+}
+
 .singlebestoption {
   margin-top: 5px;
   background-color: #dfdfff;
