@@ -1,6 +1,6 @@
 # Motivote
 
-[![pipeline status](https://gitlab.com/christianpflugradt/motivote/badges/master/pipeline.svg)](https://gitlab.com/christianpflugradt/motivote/-/commits/master) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![pipeline status](https://gitlab.com/christianpflugradt/motivote/badges/main/pipeline.svg)](https://gitlab.com/christianpflugradt/motivote/-/commits/main) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Motivote is a web client for [Pollywog](https://gitlab.com/christianpflugradt/pollywog)
 written in [Angular](https://angular.io/).
