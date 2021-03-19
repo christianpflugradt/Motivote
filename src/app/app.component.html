@@ -1,12 +1,9 @@
 <div>
   <div class="header">
-    <a href="https://gitlab.com/christianpflugradt/motivote" target="_blank" class="header-left">
-      {{'Motivote ' + clientVersion()}}</a><br><span class="subtitle">a web client for Pollywog</span>
-    <span class="header-center">🐸</span>
-    <a href="https://gitlab.com/christianpflugradt/pollywog" target="_blank" class="header-right">
-      using Pollywog {{backendVersion}}</a>
+    <a href="https://gitlab.com/christianpflugradt/motivote" target="_blank">
+      <img class="logo" src="assets/pollywog.png">
+    </a>
   </div>
-  <!--<div class="separator">.</div>-->
 
   <div *ngIf="!authorized" class="nocontent">
     <div>get invited to participate in a poll</div>
@@ -66,6 +63,8 @@
   </div>
 
   <div class="footer">
-    <a href="https://gitlab.com/christianpflugradt" target="_blank">Copyright © 2020 Christian Pflugradt</a>
+    <a href="https://gitlab.com/christianpflugradt/motivote" target="_blank">Motivote {{clientVersion()}}</a>
+    <a href="https://gitlab.com/christianpflugradt" target="_blank">Copyright © 2020 - 2021 Christian Pflugradt</a>
+    <a href="https://gitlab.com/christianpflugradt/pollywog" target="_blank">Pollywog {{backendVersion}}</a>
   </div>
 </div>
