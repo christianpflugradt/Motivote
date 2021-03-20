@@ -18,9 +18,9 @@ by the production flag being false or true.
 
 To compile Motivote using your custom configuration you should copy the environment.ts
 as a new file which you should name `environment.pollywog.ts`. There is a configuration in the 
-[angular.json](https://gitlab.com/christianpflugradt/motivote/-/blob/master/angular.json)
+[angular.json](angular.json)
 file for this custom environment. There is also a script `buildpollywog` in the
-[package.json](https://gitlab.com/christianpflugradt/motivote/-/blob/master/package.json)
+[package.json](package.json)
 which builds the Motivote app using this custom configuration.
 
 The following properties currently exist and should be present in your environment 
