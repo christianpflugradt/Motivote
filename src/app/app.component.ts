@@ -33,12 +33,10 @@ export class AppComponent implements OnInit {
   userid: number;
   backendVersion: string;
   authorized = false;
-  favicon: HTMLLinkElement = document.querySelector('#faviconIcon');
 
   constructor(public dialog: MatDialog,
               private activatedRoute: ActivatedRoute,
               private pollywogService: PollywogService) {
-    this.favicon.href = environment.favicon;
   }
 
   async ngOnInit(): Promise<void> {
