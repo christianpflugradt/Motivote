@@ -1,5 +1,14 @@
 # Motivote
 
+> [!WARNING]
+> **This project is archived.** I no longer use, develop or maintain Motivote.
+> It was last updated in 2021 and is built on the Angular version and
+> dependencies of that time, so expect it to be outdated and to contain known
+> vulnerabilities. It also only works together with its backend
+> [Pollywog](https://gitlab.com/christianpflugradt/pollywog), which is archived as well.
+> The code stays available for reference. Use it at your own risk, or fork it
+> if you want to continue it. Please don't confuse it with my active projects.
+
 [![pipeline status](https://gitlab.com/christianpflugradt/motivote/badges/main/pipeline.svg)](https://gitlab.com/christianpflugradt/motivote/-/commits/main) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Motivote is a web client for [Pollywog](https://gitlab.com/christianpflugradt/pollywog)
